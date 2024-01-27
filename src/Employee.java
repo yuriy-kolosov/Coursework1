@@ -1,12 +1,14 @@
+import java.util.Objects;
+
 public class Employee {
     //                      Сотрудник
-    String name;
-    String middleName;
-    String lastName;
+    private String name;
+    private String middleName;
+    private String lastName;
 
-    char departmentName;
-    int salary;
-    int id;             // id сотрудника
+    private char departmentName;
+    private int salary;
+    private int id;             // id сотрудника
 
     public Employee(String name, String middleName, String lastName, char departmentName, int salary, int id) {
         this.name = name;
@@ -60,4 +62,21 @@ public class Employee {
                 " з/п: " + salary + " руб.";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return departmentName == employee.departmentName &&
+                salary == employee.salary &&
+                id == employee.id &&
+                Objects.equals(name, employee.name)
+                && Objects.equals(middleName, employee.middleName)
+                && Objects.equals(lastName, employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, middleName, lastName, departmentName, salary, id);
+    }
 }

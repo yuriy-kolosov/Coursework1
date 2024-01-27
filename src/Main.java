@@ -209,7 +209,7 @@ public class Main {
             int sum = 0;
             for (Employee emp : employeeArray) {
                 if (i++ < idEmp - 1) {
-                    sum = sum + emp.salary;
+                    sum = sum + emp.getSalary();
                 } else break;
             }
             System.out.printf("Суммарное значение заработной платы сотрудников за месяц = %.2f руб.", (double) sum);
@@ -224,19 +224,19 @@ public class Main {
             int i;
             int j;
             int salary;
-            for (i = j = 0, salary = employeeArray[i].salary; i < idEmp - 2; i++) {
-                if (salary > employeeArray[i + 1].salary) {
-                    salary = employeeArray[i + 1].salary;
+            for (i = j = 0, salary = employeeArray[i].getSalary(); i < idEmp - 2; i++) {
+                if (salary > employeeArray[i + 1].getSalary()) {
+                    salary = employeeArray[i + 1].getSalary();
                     j = i + 1;
                 }
             }
             System.out.println("Сотрудник с минимальной з/п:\n" +
-                    "номер: " + employeeArray[j].id +
-                    ";\t имя: " + employeeArray[j].name +
-                    ";\t отчеcтво: " + employeeArray[j].middleName +
-                    ";\t фамилия: " + employeeArray[j].lastName +
-                    ";\t отдел: " + employeeArray[j].departmentName +
-                    ";\t з/п: " + employeeArray[j].salary + " руб.");
+                    "номер: " + employeeArray[j].getId() +
+                    ";\t имя: " + employeeArray[j].getName() +
+                    ";\t отчеcтво: " + employeeArray[j].getMiddleName() +
+                    ";\t фамилия: " + employeeArray[j].getLastName() +
+                    ";\t отдел: " + employeeArray[j].getDepartmentName() +
+                    ";\t з/п: " + employeeArray[j].getSalary() + " руб.");
         }
     }
 
@@ -247,20 +247,20 @@ public class Main {
             int i;
             int j;
             int salary;
-            for (i = j = 0, salary = employeeArray[i].salary; i < idEmp - 2; i++) {
+            for (i = j = 0, salary = employeeArray[i].getSalary(); i < idEmp - 2; i++) {
 
-                if (salary < employeeArray[i + 1].salary) {
-                    salary = employeeArray[i + 1].salary;
+                if (salary < employeeArray[i + 1].getSalary()) {
+                    salary = employeeArray[i + 1].getSalary();
                     j = i + 1;
                 }
             }
             System.out.println("Сотрудник с максимальной з/п:\n" +
-                    "номер: " + employeeArray[j].id +
-                    ";\t имя: " + employeeArray[j].name +
-                    ";\t отчеcтво: " + employeeArray[j].middleName +
-                    ";\t фамилия: " + employeeArray[j].lastName +
-                    ";\t отдел: " + employeeArray[j].departmentName +
-                    ";\t з/п: " + employeeArray[j].salary + " руб.");
+                    "номер: " + employeeArray[j].getId() +
+                    ";\t имя: " + employeeArray[j].getName() +
+                    ";\t отчеcтво: " + employeeArray[j].getMiddleName() +
+                    ";\t фамилия: " + employeeArray[j].getLastName() +
+                    ";\t отдел: " + employeeArray[j].getDepartmentName() +
+                    ";\t з/п: " + employeeArray[j].getSalary() + " руб.");
         }
     }
 
@@ -273,7 +273,7 @@ public class Main {
             double sumAverage = 0;
             for (Employee emp : employeeArray) {
                 if (i++ < idEmp - 1) {
-                    sum = sum + emp.salary;
+                    sum = sum + emp.getSalary();
                 } else break;
             }
             sumAverage = (double) sum / (idEmp - 1);
@@ -287,9 +287,9 @@ public class Main {
             System.out.println("Cписочный состав сотрудников пуст");
         } else {
             for (int i = 0; i < idEmp - 1; i++) {
-                System.out.println("ФИО: " + employeeArray[i].name +
-                        " " + employeeArray[i].middleName +
-                        " " + employeeArray[i].lastName);
+                System.out.println("ФИО: " + employeeArray[i].getName() +
+                        " " + employeeArray[i].getMiddleName() +
+                        " " + employeeArray[i].getLastName());
             }
         }
     }
@@ -299,7 +299,7 @@ public class Main {
             System.out.println("Cписочный состав сотрудников пуст");
         } else {
             for (int i = 0; i < idEmp - 1; i++) {
-                employeeArray[i].salary = employeeArray[i].salary * (100 + prc) / 100;
+                employeeArray[i].setSalary(employeeArray[i].getSalary() * (100 + prc) / 100);
             }
             System.out.println("Выполнена индексация з/п сотрудников на " + prc + "%");
         }
@@ -314,12 +314,12 @@ public class Main {
             int salary = 0;
             for (i = 0; i < idEmp - 1; i++) {
 
-                if (employeeArray[i].departmentName == idDept) {
+                if (employeeArray[i].getDepartmentName() == idDept) {
                     if (j < 0) {
-                        salary = employeeArray[i].salary;
+                        salary = employeeArray[i].getSalary();
                         j = i;
-                    } else if (salary > employeeArray[i].salary) {
-                        salary = employeeArray[i].salary;
+                    } else if (salary > employeeArray[i].getSalary()) {
+                        salary = employeeArray[i].getSalary();
                         j = i;
                     }
                 }
@@ -328,11 +328,11 @@ public class Main {
                 System.out.println("Отдел " + idDept + " отсутствует");
             } else {
                 System.out.println("Сотрудник отдела " + idDept + " с минимальной з/п:\n" +
-                        "номер: " + employeeArray[j].id +
-                        ";\t имя: " + employeeArray[j].name +
-                        ";\t отчеcтво: " + employeeArray[j].middleName +
-                        ";\t фамилия: " + employeeArray[j].lastName +
-                        ";\t з/п: " + employeeArray[j].salary + " руб.");
+                        "номер: " + employeeArray[j].getId() +
+                        ";\t имя: " + employeeArray[j].getName() +
+                        ";\t отчеcтво: " + employeeArray[j].getMiddleName() +
+                        ";\t фамилия: " + employeeArray[j].getLastName() +
+                        ";\t з/п: " + employeeArray[j].getSalary() + " руб.");
             }
         }
     }
@@ -345,12 +345,12 @@ public class Main {
             int j = -1;
             int salary = 0;
             for (i = 0; i < idEmp - 1; i++) {
-                if (employeeArray[i].departmentName == idDept) {
+                if (employeeArray[i].getDepartmentName() == idDept) {
                     if (j < 0) {
-                        salary = employeeArray[i].salary;
+                        salary = employeeArray[i].getSalary();
                         j = i;
-                    } else if (salary < employeeArray[i].salary) {
-                        salary = employeeArray[i].salary;
+                    } else if (salary < employeeArray[i].getSalary()) {
+                        salary = employeeArray[i].getSalary();
                         j = i;
                     }
                 }
@@ -359,11 +359,11 @@ public class Main {
                 System.out.println("Отдел " + idDept + " отсутствует");
             } else {
                 System.out.println("Сотрудник отдела " + idDept + " с максимальной з/п:\n" +
-                        "номер: " + employeeArray[j].id +
-                        ";\t имя: " + employeeArray[j].name +
-                        ";\t отчеcтво: " + employeeArray[j].middleName +
-                        ";\t фамилия: " + employeeArray[j].lastName +
-                        ";\t з/п: " + employeeArray[j].salary + " руб.");
+                        "номер: " + employeeArray[j].getId() +
+                        ";\t имя: " + employeeArray[j].getName() +
+                        ";\t отчеcтво: " + employeeArray[j].getMiddleName() +
+                        ";\t фамилия: " + employeeArray[j].getLastName() +
+                        ";\t з/п: " + employeeArray[j].getSalary() + " руб.");
             }
         }
     }
@@ -377,8 +377,8 @@ public class Main {
             int sum = 0;
 
             for (Employee emp : employeeArray) {
-                if (emp.departmentName == idDept && i < idEmp) {
-                    sum = sum + emp.salary;
+                if (emp.getDepartmentName() == idDept && i < idEmp) {
+                    sum = sum + emp.getSalary();
                     j = i++;
                 }
             }
@@ -400,8 +400,8 @@ public class Main {
             int sum = 0;
             double sumAverage = 0;
             for (Employee emp : employeeArray) {
-                if (emp.departmentName == idDept && i < idEmp) {
-                    sum = sum + emp.salary;
+                if (emp.getDepartmentName() == idDept && i < idEmp) {
+                    sum = sum + emp.getSalary();
                     j = i++;
                 }
             }
@@ -421,8 +421,8 @@ public class Main {
         } else {
 
             for (int i = 0; i < idEmp - 1; i++) {
-                if (employeeArray[i].departmentName == idDept) {
-                    employeeArray[i].salary = employeeArray[i].salary * (100 + prc) / 100;
+                if (employeeArray[i].getDepartmentName() == idDept) {
+                    employeeArray[i].setSalary(employeeArray[i].getSalary() * (100 + prc) / 100);
                 }
             }
             System.out.printf("Выполнена индексация з/п сотрудников отдела %c на %.2f процентов", idDept, (double) prc);
@@ -439,12 +439,12 @@ public class Main {
 
             for (int i = 0; i < idEmp - 1; i++) {
 
-                if (employeeArray[i].departmentName == idDept) {
-                    System.out.println("номер: " + employeeArray[i].id +
-                            ";\t имя: " + employeeArray[i].name +
-                            ";\t отчеcтво: " + employeeArray[i].middleName +
-                            ";\t фамилия: " + employeeArray[i].lastName +
-                            ";\t з/п: " + employeeArray[i].salary + " руб.");
+                if (employeeArray[i].getDepartmentName() == idDept) {
+                    System.out.println("номер: " + employeeArray[i].getId() +
+                            ";\t имя: " + employeeArray[i].getName() +
+                            ";\t отчеcтво: " + employeeArray[i].getMiddleName() +
+                            ";\t фамилия: " + employeeArray[i].getLastName() +
+                            ";\t з/п: " + employeeArray[i].getSalary() + " руб.");
                     j = i;
                 }
             }
@@ -464,13 +464,13 @@ public class Main {
 
             for (i = 0; i < idEmp - 1; i++) {
 
-                if (employeeArray[i].salary >= boundaryValue) {
-                    System.out.println("номер: " + employeeArray[i].id +
-                            ";\t имя: " + employeeArray[i].name +
-                            ";\t отчеcтво: " + employeeArray[i].middleName +
-                            ";\t фамилия: " + employeeArray[i].lastName +
-                            ";\t отдел: " + employeeArray[i].departmentName +
-                            ";\t з/п: " + employeeArray[i].salary + " руб.");
+                if (employeeArray[i].getSalary() >= boundaryValue) {
+                    System.out.println("номер: " + employeeArray[i].getId() +
+                            ";\t имя: " + employeeArray[i].getName() +
+                            ";\t отчеcтво: " + employeeArray[i].getMiddleName() +
+                            ";\t фамилия: " + employeeArray[i].getLastName() +
+                            ";\t отдел: " + employeeArray[i].getDepartmentName() +
+                            ";\t з/п: " + employeeArray[i].getSalary() + " руб.");
                     j = i;
                 }
             }
@@ -488,13 +488,13 @@ public class Main {
             int j = -1;
             System.out.println("Сотрудники с з/п меньшей " + boundaryValue + " руб.:");
             for (i = 0; i < idEmp - 1; i++) {
-                if (employeeArray[i].salary < boundaryValue) {
-                    System.out.println("номер: " + employeeArray[i].id +
-                            ";\t имя: " + employeeArray[i].name +
-                            ";\t отчеcтво: " + employeeArray[i].middleName +
-                            ";\t фамилия: " + employeeArray[i].lastName +
-                            ";\t отдел: " + employeeArray[i].departmentName +
-                            ";\t з/п: " + employeeArray[i].salary + " руб.");
+                if (employeeArray[i].getSalary() < boundaryValue) {
+                    System.out.println("номер: " + employeeArray[i].getId() +
+                            ";\t имя: " + employeeArray[i].getName() +
+                            ";\t отчеcтво: " + employeeArray[i].getMiddleName() +
+                            ";\t фамилия: " + employeeArray[i].getLastName() +
+                            ";\t отдел: " + employeeArray[i].getDepartmentName() +
+                            ";\t з/п: " + employeeArray[i].getSalary() + " руб.");
                     j = i;
                 }
             }
